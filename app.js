@@ -5,24 +5,24 @@ const app = express()
 //serverımız ayakta , port 3000
 app.listen(3000)
 
+//ejs view engine set edilmesi
+app.set('view engine','ejs') //views olsaydı klasör oto görür
+app.set('views','htmls')
 
-//get isteklerine cevap vermek
-
-// app.get('/',(req,res)=>{
-//     res.send('<p>Merhaba</p>')
-// })
-
-app.get('/index',(req,res)=>{
-    res.sendFile('./htmls/index.html',{root:__dirname})
+//get istekleri
+app.get('/',(req,res) => {
+    res.render('index') //200 ok
 })
 
-// yönlendirme yapalım
-app.get('/',(req,res)=>{
-    //res.sendFile('./htmls/index.html',{root:__dirname})
-    res.redirect('/index') //302 Found
+app.get('/hakkimda',(req,res) => {
+    res.render('hakkimda')
 })
 
-//middleware
-app.use((req,res)=>{
-    res.status(404).sendFile('./htmls/404.html',{root:__dirname})
+app.get('/ders/ekle',(req,res) => {
+    res.render('ekle')
+})
+
+//use middleware
+app.use((req,res) => {
+    res.status(404).render('404')
 })
