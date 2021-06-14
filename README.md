@@ -11,3 +11,6 @@
 
 ## '/ders-ekle'
 ![dersekle](https://user-images.githubusercontent.com/57464067/121935261-e8199300-cd50-11eb-8b23-addffc26a23a.png)
+
+## 404
+![404](https://user-images.githubusercontent.com/57464067/121936192-06cc5980-cd52-11eb-9100-5cc77e9bc77c.png)
