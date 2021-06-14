@@ -1,41 +1,18 @@
 const express = require('express')
 const Ders = require('../models/ders')
 const router = express.Router()
+const dersController = require('../controllers/dersController')
 
-router.get('/',(req,res) => {
-    Ders.find().sort({createdAt:-1})
-        .then((result) => {
-            res.render('index',{dersler:result})
-        })
-        .catch((err) => console.log(err))
-})
+//tüm dersleri getirmek
+router.get('/',dersController.dersleriGetir)
 
-router.get('/:id',(req,res) => {
-    const id = req.params.id
-    Ders.findById(id).then((result) => {
-        res.render('detay',{ders:result})
-    }).catch((err) => console.log(err))
-})
+//id'ye göre ders getirmek
+router.get('/:id',dersController.dersGetir)
 
-//delete
-router.delete('/:id',(req,res) =>{
-    const id = req.params.id
-    Ders.findByIdAndDelete(id)
-        .then(result => {
-            res.json({redirect:'/dersler'})
-        }).catch((err) => console.log(err))
-})
+//ders silmek
+router.delete('/:id',dersController.dersSil)
 
-//post işlemi
-router.post('/',(req,res) => {
-    //console.log(req.body);
-    const ders = new Ders(req.body)
-    ders.save()
-    //başarılı ise yönlendirme
-        .then((result) => {
-            res.redirect('/dersler')
-        })
-        .catch((err) => console.log(err))
-})
+//ders eklemek
+router.post('/',dersController.dersEkle)
 
 module.exports = router

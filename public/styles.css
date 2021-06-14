@@ -83,8 +83,16 @@ h3{
     position: absolute;
     top: 0;
     right: 0;
-    border-radius: 50%;
-    padding: 8px;
+    border-radius: 5px;
+    background-color: darkred;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100px;
+    height: 25px;
+    padding-top: 10px;
 }
 
 .sil:hover{
