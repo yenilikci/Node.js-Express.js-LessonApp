@@ -26,7 +26,7 @@ app.use(morgan('dev')) //method,path,statusCode,ms,message
 
 app.use(express.static('public'))
 
-//get istekleri, model ile işlemler
+/*get istekleri, model ile işlemler
 app.get('/ders-ekle',(req,res) => {
     //Modelimizi kullanarak yeni bir ders oluşturalım
     const ders = new Ders({
@@ -55,14 +55,20 @@ app.get('/tek-ders',(req,res) => {
         res.send(result)
     })
 })
+*/
 
 //get istekleri, sayfaları yüklemek
 app.get('/',(req,res) => {
-    const dersler = [
-        {baslik:'React Kursu',icerik:'React Hooks ve React Native'},
-        {baslik:'Flutter Kursu',icerik:'Flutter ve firebase ile uygulama'}
-    ]
-    res.render('index',{dersler}) //200 ok
+    //yönlendirme
+    res.redirect('/dersler')
+})
+
+app.get('/dersler',(req,res) => {
+    Ders.find().sort({createdAt:-1})
+        .then((result) => {
+            res.render('index',{dersler:result})
+        })
+        .catch((err) => console.log(err))
 })
 
 app.get('/hakkimda',(req,res) => {
