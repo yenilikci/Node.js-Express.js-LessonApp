@@ -1,6 +1,7 @@
 const morgan = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
+const Ders = require('./models/ders')
 
 const dbURI = 'mongodb+srv://yenilikci:test1234@cluster1.sdpjj.mongodb.net/lessonDB?retryWrites=true&w=majority'
 
@@ -25,7 +26,37 @@ app.use(morgan('dev')) //method,path,statusCode,ms,message
 
 app.use(express.static('public'))
 
-//get istekleri
+//get istekleri, model ile işlemler
+app.get('/ders-ekle',(req,res) => {
+    //Modelimizi kullanarak yeni bir ders oluşturalım
+    const ders = new Ders({
+        baslik:'NodeJS',
+        icerik:'NodeJs ile uygulama geliştirmek'
+    })
+    //dersi eklemek, promise yapısı
+    ders.save().then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        console.log(err)
+    })
+
+})
+
+app.get('/butun-dersler',(req,res) => {
+    //tüm dersleri getirmek
+    Ders.find().then((result) => {
+        res.send(result)
+    })
+})
+
+app.get('/tek-ders',(req,res) => {
+    //tek bir kayıt
+    Ders.findById('60c7701d2646bc3b4cca69e8').then((result) => {
+        res.send(result)
+    })
+})
+
+//get istekleri, sayfaları yüklemek
 app.get('/',(req,res) => {
     const dersler = [
         {baslik:'React Kursu',icerik:'React Hooks ve React Native'},
