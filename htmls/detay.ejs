@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="detay content">
+        <h2><%= ders.baslik %></h2>
+        <div class="content">
+            <p><%= ders.icerik %></p>
+            <hr>
+            <b>Oluşturma Tarihi: </b><p><%= ders.createdAt %></p>
+        </div>
+        <a data-doc="<%= ders._id %>" class="sil">Sil</a>
+    </div>
+</body>
+</html>

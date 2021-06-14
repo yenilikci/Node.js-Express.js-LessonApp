@@ -83,6 +83,13 @@ app.get('/ders/ekle',(req,res) => {
     res.render('ekle')
 })
 
+app.get('/dersler/:id',(req,res) => {
+    const id = req.params.id
+    Ders.findById(id).then((result) => {
+        res.render('detay',{ders:result})
+    }).catch((err) => console.log(err))
+})
+
 //post işlemi
 app.post('/dersler',(req,res) => {
     //console.log(req.body);

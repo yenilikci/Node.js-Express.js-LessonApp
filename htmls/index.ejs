@@ -7,8 +7,10 @@
         <h2>Bütün Dersler</h2>
         <% if(dersler.length > 0) { %>
             <% dersler.forEach(ders => { %>
-            <h3 class="baslik"><%= ders.baslik %></h3>         
-            <p class="icerik"><%= ders.icerik %></p>
+                <a class="tekil" href="/dersler/<%=ders._id%>">
+                    <h3 class="baslik"><%= ders.baslik %></h3>         
+                <p class="icerik"><%= ders.icerik %></p>
+                </a>
             <% }) %>
         <% } else { %>
             <p>Henüz ders eklenmedi</p>
