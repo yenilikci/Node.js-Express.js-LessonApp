@@ -128,3 +128,10 @@ h3{
     font-size: 1em;
     cursor: pointer;
 }
+.hata{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
