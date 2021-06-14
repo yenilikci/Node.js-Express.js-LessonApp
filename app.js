@@ -15,7 +15,10 @@ app.use((req,res,next) => {
     console.log(req.hostname,req.path,req.method)
     next()
 })*/
+
 app.use(morgan('dev')) //method,path,statusCode,ms,message
+
+app.use(express.static('public'))
 
 //get istekleri
 app.get('/',(req,res) => {
