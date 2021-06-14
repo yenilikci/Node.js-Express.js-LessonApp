@@ -1,3 +1,4 @@
+const morgan = require('morgan')
 const express = require('express')
 
 const app = express()
@@ -9,11 +10,12 @@ app.listen(3000)
 app.set('view engine','ejs') //views olsaydı klasör oto görür
 app.set('views','htmls')
 
-//middleware , next
+/*middleware , next
 app.use((req,res,next) => {
     console.log(req.hostname,req.path,req.method)
     next()
-})
+})*/
+app.use(morgan('dev')) //method,path,statusCode,ms,message
 
 //get istekleri
 app.get('/',(req,res) => {
