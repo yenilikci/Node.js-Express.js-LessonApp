@@ -19,6 +19,14 @@
     </nav>
     <div class="dersler content">
         <h2>Bütün Dersler</h2>
+        <% if(dersler.length > 0) { %>
+            <% dersler.forEach(ders => { %>
+            <h3 class="baslik"><%= ders.baslik %></h3>         
+            <p class="icerik"><%= ders.icerik %></p>
+            <% }) %>
+        <% } else { %>
+            <p>Henüz ders eklenmedi</p>
+            <% } %>
     </div>
 </body>
 </html>

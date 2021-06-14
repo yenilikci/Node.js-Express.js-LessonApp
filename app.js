@@ -11,11 +11,16 @@ app.set('views','htmls')
 
 //get istekleri
 app.get('/',(req,res) => {
-    res.render('index') //200 ok
+    const dersler = [
+        {baslik:'React Kursu',icerik:'React Hooks ve React Native'},
+        {baslik:'Flutter Kursu',icerik:'Flutter ve firebase ile uygulama'}
+    ]
+    res.render('index',{dersler}) //200 ok
 })
 
 app.get('/hakkimda',(req,res) => {
-    res.render('hakkimda')
+    // render(hangiSayfa,opsiyonluVeri)
+    res.render('hakkimda',{hakkimda:'LessonApp Hakkında'})
 })
 
 app.get('/ders/ekle',(req,res) => {
