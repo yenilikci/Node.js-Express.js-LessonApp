@@ -90,6 +90,15 @@ app.get('/dersler/:id',(req,res) => {
     }).catch((err) => console.log(err))
 })
 
+//delete
+app.delete('/dersler/:id',(req,res) =>{
+    const id = req.params.id
+    Ders.findByIdAndDelete(id)
+        .then(result => {
+            res.json({redirect:'/dersler'})
+        }).catch((err) => console.log(err))
+})
+
 //post işlemi
 app.post('/dersler',(req,res) => {
     //console.log(req.body);
