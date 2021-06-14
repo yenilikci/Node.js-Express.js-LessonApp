@@ -1,10 +1,15 @@
 const morgan = require('morgan')
 const express = require('express')
+const mongoose = require('mongoose')
+
+const dbURI = 'mongodb+srv://yenilikci:test1234@cluster1.sdpjj.mongodb.net/lessonDB?retryWrites=true&w=majority'
 
 const app = express()
 
-//serverımız ayakta , port 3000
-app.listen(3000)
+//veritabanına bağlanma
+mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
+        .then((result) => app.listen(3000)) //bağlantı başarılı ise serverımız ayakta , port 3000
+        .catch((err) => console.log(err))
 
 //ejs view engine set edilmesi
 app.set('view engine','ejs') //views olsaydı klasör oto görür
