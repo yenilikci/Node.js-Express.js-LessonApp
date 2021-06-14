@@ -9,6 +9,12 @@ app.listen(3000)
 app.set('view engine','ejs') //views olsaydı klasör oto görür
 app.set('views','htmls')
 
+//middleware , next
+app.use((req,res,next) => {
+    console.log(req.hostname,req.path,req.method)
+    next()
+})
+
 //get istekleri
 app.get('/',(req,res) => {
     const dersler = [
