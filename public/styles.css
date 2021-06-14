@@ -16,9 +16,8 @@ p,h1,h2,h3,a,ul{
 nav{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 60px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 3px solid darkblue;
     text-transform: uppercase;
 }
 
@@ -35,11 +34,12 @@ nav li{
 
 nav h1{
     font-size: 3em;
+    color: darkblue;
 }
 
 nav p, nav a{
-    color: #777;
-    font-weight: 300;
+    font-weight: 600;
+    color: darkblue;
 }
 
 h2{
@@ -55,15 +55,24 @@ h3{
     margin-left: 20px;
 }
 
+.butun{
+    border: 3px double black;
+    width: 300px;
+    height:50px;
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+}
+
 .dersler a{
     display: block;
     margin: 40px 0;
     padding-left: 30px;
-    border-left: 6px solid crimson;
+    border-left: 6px solid darkblue;
 }
 
 .dersler a:hover h3{
-    color: crimson;
+    color: darkblue;
 }
 
 .detay{
@@ -93,6 +102,7 @@ h3{
     width: 100%;
     margin: 10px 0;
     padding: 8px;
+    border: 2px solid darkblue;
 }
 
 .ders-ekle label{
@@ -102,10 +112,11 @@ h3{
 
 .ders-ekle button{
     margin-top: 20px;
-    background: #10ac84;
-    color: black;
-    padding: 6px;
+    background: darkblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
     border: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
     cursor: pointer;
 }

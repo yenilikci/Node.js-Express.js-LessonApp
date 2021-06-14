@@ -4,7 +4,7 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="dersler content">
-        <h2>Bütün Dersler</h2>
+        <h2 class="butun">Bütün Dersler</h2>
         <% if(dersler.length > 0) { %>
             <% dersler.forEach(ders => { %>
                 <a class="tekil" href="/dersler/<%=ders._id%>">

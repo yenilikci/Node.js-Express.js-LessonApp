@@ -1,7 +1,7 @@
 const morgan = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
-const Ders = require('./models/ders')
+const dersRoutes = require('./routes/dersRoutes')
 
 const dbURI = 'mongodb+srv://yenilikci:test1234@cluster1.sdpjj.mongodb.net/lessonDB?retryWrites=true&w=majority'
 
@@ -28,6 +28,9 @@ app.use(express.static('public'))
 
 //middleware post sec
 app.use(express.urlencoded({extended:true}))
+
+//ders routelarını kullanabilmek için middleware, /dersler slug'ı middleware tarafından gelir
+app.use('/dersler',dersRoutes)
 
 /*get istekleri, model ile işlemler
 app.get('/ders-ekle',(req,res) => {
@@ -66,14 +69,6 @@ app.get('/',(req,res) => {
     res.redirect('/dersler')
 })
 
-app.get('/dersler',(req,res) => {
-    Ders.find().sort({createdAt:-1})
-        .then((result) => {
-            res.render('index',{dersler:result})
-        })
-        .catch((err) => console.log(err))
-})
-
 app.get('/hakkimda',(req,res) => {
     // render(hangiSayfa,opsiyonluVeri)
     res.render('hakkimda',{hakkimda:'LessonApp Hakkında'})
@@ -83,33 +78,6 @@ app.get('/ders/ekle',(req,res) => {
     res.render('ekle')
 })
 
-app.get('/dersler/:id',(req,res) => {
-    const id = req.params.id
-    Ders.findById(id).then((result) => {
-        res.render('detay',{ders:result})
-    }).catch((err) => console.log(err))
-})
-
-//delete
-app.delete('/dersler/:id',(req,res) =>{
-    const id = req.params.id
-    Ders.findByIdAndDelete(id)
-        .then(result => {
-            res.json({redirect:'/dersler'})
-        }).catch((err) => console.log(err))
-})
-
-//post işlemi
-app.post('/dersler',(req,res) => {
-    //console.log(req.body);
-    const ders = new Ders(req.body)
-    ders.save()
-    //başarılı ise yönlendirme
-        .then((result) => {
-            res.redirect('/dersler')
-        })
-        .catch((err) => console.log(err))
-})
 
 //use middleware
 app.use((req,res) => {
