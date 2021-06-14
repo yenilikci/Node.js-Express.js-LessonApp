@@ -4,11 +4,11 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="ders-ekle content">
-        <form>
+        <form method="POST" action="/dersler">
             <label for="baslik">Ders Başlık</label>
-            <input type="text" id="baslik" required>
+            <input type="text" id="baslik" name="baslik" required>
             <label for="icerik">Ders İçerik</label>
-            <input type="text" id="icerik" required>
+            <input type="text" id="icerik" name="icerik" required>
             <button>Kaydet</button>
         </form>
     </div>

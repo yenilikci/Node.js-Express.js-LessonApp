@@ -26,6 +26,9 @@ app.use(morgan('dev')) //method,path,statusCode,ms,message
 
 app.use(express.static('public'))
 
+//middleware post sec
+app.use(express.urlencoded({extended:true}))
+
 /*get istekleri, model ile işlemler
 app.get('/ders-ekle',(req,res) => {
     //Modelimizi kullanarak yeni bir ders oluşturalım
@@ -78,6 +81,18 @@ app.get('/hakkimda',(req,res) => {
 
 app.get('/ders/ekle',(req,res) => {
     res.render('ekle')
+})
+
+//post işlemi
+app.post('/dersler',(req,res) => {
+    //console.log(req.body);
+    const ders = new Ders(req.body)
+    ders.save()
+    //başarılı ise yönlendirme
+        .then((result) => {
+            res.redirect('/dersler')
+        })
+        .catch((err) => console.log(err))
 })
 
 //use middleware
